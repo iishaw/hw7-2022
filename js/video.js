@@ -4,9 +4,9 @@ window.addEventListener("load", function() {
 	console.log("Good job opening the window")
 	video=document.querySelector("#player1")
 	video.autoplay=false
-	console.log("autoplay is set to " +video.autoplay)
+	console.log("autoplay is set to " + video.autoplay)
 	video.loop=false
-	console.log("loop is set to  "+ video.loop)
+	console.log("loop is set to  " + video.loop)
 });
 
 document.querySelector("#play").addEventListener("click", function() {
@@ -38,39 +38,27 @@ document.querySelector("#skip").addEventListener("click", function() {
 console.log("current time is " + video.currentTime);
 });
 
-
-sliderButton = document.querySelector("#slider")
-function setVolume(){
-    video.volume = slider.value / 100;
-    document.querySelector("#volume").innerHTML = slider.value;
-    console.log("Current volume is " + video.volume *100 + "%");
-};
-sliderButton.addEventListener("change",setVolume);
-
-
-mute = document.getElementById('mute')
-function videoMute(){
-    if (video.muted==true){
-      video.muted=false;
-      document.getElementById("mute").innerHTML='Mute';
-      document.getElementById("slider").value=100;
-      document.getElementById("volume").innerHTML=`${document.getElementById("slider").value/100}`;
-      console.log(document.getElementById("slider").value);
-    }
-
-    else if (video.muted==false){
-      video.muted=true;
-      document.getElementById("mute").innerHTML='Umute';
-      document.getElementById("slider").value=0;
-      document.getElementById("volume").innerHTML=`${document.getElementById('slider').value/100}`;
-      console.log(document.getElementById("slider").value);
-    }}
-mute.addEventListener("click", videoMute);
+document.querySelector("#slider").addEventListener("change", function(){
+  video.volume = this.value / 100;
+  document.querySelector("#volume").textContent = video.volume * 100 + "%";
+});
 
 document.querySelector("#vintage").addEventListener("click", function(){
-	video.classList.add('oldSchool');
+	video.classList.add("oldSchool");
 });
 
 document.querySelector("#orig").addEventListener("click", function(){
-	video.classList.remove('oldSchool');
+	video.classList.remove("oldSchool");
+});
+
+document.querySelector("#mute").addEventListener("click",function() {
+	if (video.muted === false) {
+		video.muted = true;
+		document.querySelector('#mute').innerHTML = "Unmute";
+	}
+	else{
+		video.muted= false;
+		document.querySelector('#mute').innerHTML = "Mute";
+
+	}
 });
