@@ -43,7 +43,7 @@ sliderButton = document.querySelector("#slider")
 function setVolume(){
     video.volume = slider.value / 100;
     document.querySelector("#volume").innerHTML = slider.value;
-    console.log("Current volume is " + video.volume);
+    console.log("Current volume is " + video.volume *100 + "%");
 };
 sliderButton.addEventListener("change",setVolume);
 
@@ -63,6 +63,7 @@ function videoMute(){
       document.getElementById("mute").innerHTML='Umute';
       document.getElementById("slider").value=0;
       document.getElementById("volume").innerHTML=`${document.getElementById('slider').value/100}`;
+      console.log(document.getElementById("slider").value);
     }}
 mute.addEventListener("click", videoMute);
 
